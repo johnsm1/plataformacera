@@ -1,6 +1,7 @@
 
 import express, { Request, Response, Application } from 'express';
 import dotenv from 'dotenv';
+import { logger } from './logger';
 
 dotenv.config();
 
@@ -12,5 +13,5 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server is Fire at http://localhost:${port}`);
+    logger.info(`Server is Fire at http://localhost:${port}`)
 });
