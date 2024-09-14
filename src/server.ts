@@ -4,12 +4,19 @@ import * as dotenv from 'dotenv'
 
 import { logger } from '@/config/logger'
 import { setupApp } from '@/config/app'
+import { Mongo } from '@/infra/database/mongodb/connection'
 
 dotenv.config()
 
 const app = setupApp()
 const port = process.env.PORT || 3000
 
-app.listen(port, () => {
-  logger.info(`Server is Fire at http://localhost:${port}`)
-})
+Mongo.connect()
+  .then(() => {
+    app.listen(port, () => {
+      logger.info(`Server is Fire at http://localhost:${port}`)
+    })
+  })
+  .catch((error) => {
+    logger.error('Database connection failed', error)
+  })
