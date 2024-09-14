@@ -1,19 +1,14 @@
 import 'module-alias/register'
 
-import * as express from 'express'
 import * as dotenv from 'dotenv'
-import type { Request, Response, Application } from 'express'
 
-import { logger } from '@/logger'
+import { logger } from '@/config/logger'
+import { setupApp } from '@/config/app'
 
 dotenv.config()
 
-const app: Application = express()
+const app = setupApp()
 const port = process.env.PORT || 3000
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to Express & TypeScript Server')
-})
 
 app.listen(port, () => {
   logger.info(`Server is Fire at http://localhost:${port}`)
