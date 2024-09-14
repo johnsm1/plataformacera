@@ -1,0 +1,3 @@
+{
+    "*.{ts}": ["yarn lint:fix", "npx prettier . --write --ignore-unknown"]
+  }
