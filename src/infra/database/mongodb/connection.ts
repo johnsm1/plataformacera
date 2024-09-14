@@ -16,7 +16,14 @@ export class Mongo {
 
   public static async connect() {
     if (!Mongo.conn) {
-      Mongo.conn = await connect('mongodb://admin:secret@localhost:27017')
+      const username = process.env.MONGO_USERNAME
+      const password = process.env.MONGO_PASSWORD
+      const host = process.env.MONGO_HOST
+      const port = process.env.MONGO_PORT
+
+      const uri = `mongodb://${username}:${password}@${host}:${port}`
+
+      Mongo.conn = await connect(uri)
       logger.info('Connected to MongoDB')
     } else {
       logger.info('Already connected to MongoDB')
