@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import 'module-alias/register'
 
 import * as dotenv from 'dotenv'
