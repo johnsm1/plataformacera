@@ -1,5 +1,7 @@
-import { logger } from '@/config/logger'
 import { connect, Mongoose } from 'mongoose'
+
+import { logger } from '@/config/logger'
+import { RoleModel, UserModel } from '@/infra/database/model'
 
 export class Mongo {
   private static instance: Mongo | null = null
@@ -24,9 +26,13 @@ export class Mongo {
       const uri = `mongodb://${username}:${password}@${host}:${port}`
 
       Mongo.conn = await connect(uri)
+
       logger.info('Connected to MongoDB')
     } else {
       logger.info('Already connected to MongoDB')
     }
+
+    await RoleModel.createCollection()
+    await UserModel.createCollection()
   }
 }
