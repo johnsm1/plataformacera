@@ -514,11 +514,6 @@ balanced-match@^1.0.0:
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-base64-url@^2.3.2:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/base64-url/-/base64-url-2.3.3.tgz#645b71455c75109511f27d98450327e455f488ec"
-  integrity sha512-dLMhIsK7OplcDauDH/tZLvK7JmUZK3A7KiQpjNzsBrM6Etw7hzNI1tLEywqJk9NnwkgWuFKSlx/IUO7vF6Mo8Q==
-
 bcrypt@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/bcrypt/-/bcrypt-5.1.1.tgz#0f732c6dcb4e12e5b70a25e326a72965879ba6e2"
@@ -1450,11 +1445,6 @@ is-stream@^3.0.0:
   resolved "https://registry.yarnpkg.com/is-stream/-/is-stream-3.0.0.tgz#e6bfd7aa6bef69f4f472ce9bb681e3e57b4319ac"
   integrity sha512-LnQR4bZ9IADDRSkvpqMGvt/tEJWclzklNgSw48V5EAaAeDd6qGvN8ei6k5p0tvxSR171VmGyHuTiAOfxAbr8kA==
 
-is.object@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/is.object/-/is.object-1.0.0.tgz#e4f4117e9f083b35c8df5cf817ea3efb0452fdfa"
-  integrity sha512-BdDP6tLXkf0nrCnksLobALJxkt2hmrVL6ge1oRuzGU4Lb9NpreEbhhuCcY6HMzx/qo3Dff9DJ3jf0x9+U0bNMQ==
-
 isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
@@ -1472,11 +1462,6 @@ json-buffer@3.0.1:
   resolved "https://registry.yarnpkg.com/json-buffer/-/json-buffer-3.0.1.tgz#9338802a30d3b6605fbe0613e094008ca8c05a13"
   integrity sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==
 
-json-parse-safe@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/json-parse-safe/-/json-parse-safe-2.0.0.tgz#27b4fddd31114936136b77d9bbe13f7ef5c897de"
-  integrity sha512-aK7Ccg46n9JkRil/M5s8ytNP9wk0Tc0TsTDVMOYxB2cGsL7XFJ1vfWsurkVZy6zR55KZ+2SWHEuzQeZK4PH6lg==
-
 json-schema-traverse@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz#69f6a87d9513ab8bb8fe63bdb0979c448e684660"
@@ -1486,16 +1471,6 @@ json-stable-stringify-without-jsonify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==
-
-json-web-token@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/json-web-token/-/json-web-token-3.2.0.tgz#06cbc8ab039f474f0f3fabc2e073e7fb6903b8d8"
-  integrity sha512-y+zDkON17Zk7X3Hf0Rv04k8N7cP1GDRonLLL7WkdnlHl1ur2hwta4MYzxG8nWhQWRBNlIp1erszhmo/65RSTIw==
-  dependencies:
-    base64-url "^2.3.2"
-    is.object "^1.0.0"
-    json-parse-safe "^2.0.0"
-    xtend "^4.0.2"
 
 json5@^2.2.2:
   version "2.2.3"
@@ -2662,7 +2637,7 @@ wrappy@1:
   resolved "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz"
   integrity sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==
 
-xtend@^4.0.0, xtend@^4.0.2:
+xtend@^4.0.0:
   version "4.0.2"
   resolved "https://registry.npmjs.org/xtend/-/xtend-4.0.2.tgz"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
