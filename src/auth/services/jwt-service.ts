@@ -1,5 +1,5 @@
 import { logger } from '@/config/logger'
-import { User } from '@/user/entity/user.entity'
+import { IUser } from '@/user/entity/user.entity'
 import { JwtPayload, sign, verify } from 'jsonwebtoken'
 
 class JwtService {
@@ -11,7 +11,7 @@ class JwtService {
     this.JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'teste'
   }
 
-  public generateAccessToken(user: User): string {
+  public generateAccessToken(user: IUser): string {
     const { email, roles } = user
     return sign({ email, roles }, this.JWT_SECRET, { expiresIn: 30 })
   }

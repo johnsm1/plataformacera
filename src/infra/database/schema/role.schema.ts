@@ -1,8 +1,8 @@
 import { Schema } from 'mongoose'
 
-import { Role } from '@/auth/entity/role.entity'
+import { IRole } from '@/auth/entity/role.entity'
 
-export const RoleSchema = new Schema<Role>({
+export const RoleSchema = new Schema<IRole>({
   name: { type: String, required: true },
   permissions: { type: [String], required: true },
 })

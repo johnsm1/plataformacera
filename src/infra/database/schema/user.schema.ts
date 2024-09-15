@@ -1,8 +1,8 @@
 import { Schema } from 'mongoose'
 
-import { User } from '@/user/entity/user.entity'
+import { IUser } from '@/user/entity/user.entity'
 
-export const UserSchema = new Schema<User>({
+export const UserSchema = new Schema<IUser>({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },

@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcrypt'
 
 import { SignInRequestDto } from '../dto/sign-in-request.dto'
-import { User } from '@/user/entity/user.entity'
+import { IUser } from '@/user/entity/user.entity'
 import { UserRepository } from '@/infra/database/repository/user.repository'
 import { HttpException } from '@/common/exception/http-exception.error'
 import { makeJwtService } from '@/auth/factory/service/jwt-service-factory'
@@ -18,7 +18,7 @@ export class SignInUseCase
   async execute(input: SignInRequestDto): Promise<SignInResponseDto> {
     const { email, password } = input
 
-    const user: User = await this.userRepository.findOneByEmail(email)
+    const user: IUser = await this.userRepository.findOneByEmail(email)
     if (!user) {
       throw new HttpException('User not found', 404)
     }

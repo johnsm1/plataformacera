@@ -4,7 +4,7 @@ import { RefreshTokenResponseDto } from '../dto/refresh-token-response.dto'
 import { UserRepository } from '@/infra/database/repository/user.repository'
 import { JwtPayloadDto } from '@/auth/dto'
 import { HttpException } from '@/common/exception/http-exception.error'
-import { User } from '@/user/entity/user.entity'
+import { IUser } from '@/user/entity/user.entity'
 
 export class RefreshTokenUseCase
   implements UseCase<string, RefreshTokenResponseDto>
@@ -21,7 +21,7 @@ export class RefreshTokenUseCase
     if (!verifyRefreshToken) {
       throw new HttpException('Invalid or expired refresh token', 401)
     }
-    const user: User = await this.userRepository.findById(
+    const user: IUser = await this.userRepository.findById(
       verifyRefreshToken.userId
     )
     if (!user) {
