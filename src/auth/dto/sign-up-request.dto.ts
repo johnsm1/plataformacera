@@ -11,9 +11,13 @@ export class SignUpRequestDto {
   @IsNotEmpty()
   password: string
 
-  constructor(name: string, email: string, password: string) {
+  @IsNotEmpty()
+  role: string
+
+  constructor(name: string, email: string, password: string, role: string) {
     this.name = name
     this.email = email
     this.password = password
+    this.role = role
   }
 }

@@ -1,34 +1,62 @@
-import type { Request, Response } from 'express'
+import { type Request, type Response } from 'express'
 import { validate } from 'class-validator'
 
-import { SignUpRequestDto } from '@/auth/dto/sign-up-request.dto'
 import { HttpException } from '@/common/exception/http-exception.error'
-import { SignUpUseCase } from '@/auth/use-case'
+import {
+  RefreshTokenUseCase,
+  SignInUseCase,
+  SignUpUseCase,
+} from '@/auth/use-case'
+import { plainToClass } from 'class-transformer'
+import { returnMessageErrors } from '@/common/helper/error-message-map'
+import { SignInRequestDto, SignUpRequestDto, SignUpResponseDto } from '../dto'
 
 export class AuthController {
-  constructor(private signUpUseCase: SignUpUseCase) {
+  constructor(
+    private signUpUseCase: SignUpUseCase,
+    private signInUseCase: SignInUseCase,
+    private refreshTokenUseCase: RefreshTokenUseCase
+  ) {
     this.signUpUseCase = signUpUseCase
+    this.signInUseCase = signInUseCase
+    this.refreshTokenUseCase = refreshTokenUseCase
   }
 
-  async signUp(req: Request, res: Response) {
-    const signUpRequestDto = new SignUpRequestDto(
-      req.body.name,
+  async signIn(req: Request, res: Response) {
+    const signInRequestDto = new SignInRequestDto(
       req.body.email,
       req.body.password
     )
+    const errors = await validate(signInRequestDto)
+    const messages = returnMessageErrors(errors)
 
+    if (messages) {
+      throw new HttpException(messages, 400)
+    }
+    const response = await this.signInUseCase.execute(signInRequestDto)
+    return res.json(response)
+  }
+
+  async signUp(req: Request, res: Response) {
+    const signUpRequestDto = plainToClass(SignUpRequestDto, req.body)
     const errors = await validate(signUpRequestDto)
+    const messages = returnMessageErrors(errors)
 
-    if (errors.length > 0) {
-      const messages = errors.map((error) =>
-        Object.values(error.constraints!).join(', ')
-      )
-
+    if (messages) {
       throw new HttpException(messages, 400)
     }
 
-    const user = await this.signUpUseCase.execute(signUpRequestDto)
+    const signUpResponseDto: SignUpResponseDto =
+      await this.signUpUseCase.execute(signUpRequestDto)
+    return res.json(signUpResponseDto)
+  }
 
-    return res.json(user)
+  async refreshToken(req: Request, res: Response) {
+    const authHeader = req.headers['authorization']
+    const token =
+      authHeader && authHeader.startsWith('Bearer ')
+        ? authHeader.split(' ')[1]
+        : null
+    return res.json(await this.refreshTokenUseCase.execute(token))
   }
 }

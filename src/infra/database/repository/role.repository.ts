@@ -11,6 +11,9 @@ export class RoleRepository implements Repository<Role> {
   constructor() {
     this.model = RoleModel
   }
+  async findById(id: string): Promise<Role> {
+    return await this.model.findById(id)
+  }
 
   async save(entity: Role): Promise<Role> {
     const document = await this.model.create(entity)
@@ -19,8 +22,6 @@ export class RoleRepository implements Repository<Role> {
   }
 
   async findAllByName(roles: string[]): Promise<Role[]> {
-    const documents = await this.model.find({ name: { $in: roles } })
-
-    return documents.map((doc) => mapObjectId(doc))
+    return await this.model.find({ name: { $in: roles } })
   }
 }

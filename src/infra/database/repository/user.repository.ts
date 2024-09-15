@@ -12,6 +12,14 @@ export class UserRepository implements Repository<User> {
     this.model = UserModel
   }
 
+  findById(id: string): Promise<User> {
+    return this.model.findById(id).exec()
+  }
+
+  async findOneByEmail(email: string): Promise<User | null> {
+    return this.model.findOne({ email }).exec()
+  }
+
   async save(entity: User): Promise<User> {
     const { email, name, password, roles } = entity
 

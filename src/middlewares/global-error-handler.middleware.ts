@@ -1,16 +1,17 @@
+/* eslint-disable */
 import { HttpException } from '@/common/exception/http-exception.error'
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 
 export function globalErrorHandlerMiddlerware(
   error: HttpException | Error,
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) {
   if (error instanceof HttpException) {
     const statusCode = error.statusCode
     const message = error.errors
     const description = error.description
-
     return res.status(statusCode).json({
       success: false,
       message,
@@ -19,7 +20,6 @@ export function globalErrorHandlerMiddlerware(
     })
   }
 
-  console.log({ error })
   return res.status(500).json({
     success: false,
     message: 'Internal server error',
