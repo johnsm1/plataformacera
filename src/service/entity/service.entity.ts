@@ -1,5 +1,6 @@
 import { IClient } from '@/client/entity/client.entity'
 import { IVehicle } from '@/vehicle/entity/vehicle.entity'
+import { ServiceStatus } from '../enum/service-status.enum'
 
 export interface IService {
   serviceId: string
@@ -7,6 +8,6 @@ export interface IService {
   date: Date
   vehicle: IVehicle
   client: IClient
-  status: 'Pendente' | 'Em Andamento' | 'Concluído'
+  status: ServiceStatus
   value: number
 }

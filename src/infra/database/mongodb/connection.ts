@@ -2,6 +2,7 @@ import { connect, Mongoose } from 'mongoose'
 
 import { logger } from '@/config/logger'
 import { RoleModel, UserModel } from '@/infra/database/model'
+import config from '@/config/env-config'
 
 export class Mongo {
   private static instance: Mongo | null = null
@@ -18,10 +19,10 @@ export class Mongo {
 
   public static async connect() {
     if (!Mongo.conn) {
-      const username = process.env.MONGO_USERNAME
-      const password = process.env.MONGO_PASSWORD
-      const host = process.env.MONGO_HOST
-      const port = process.env.MONGO_PORT
+      const username = config.MONGO_USERNAME
+      const password = config.MONGO_PASSWORD
+      const host = config.MONGO_HOST
+      const port = config.MONGO_PORT
 
       const uri = `mongodb://${username}:${password}@${host}:${port}`
 

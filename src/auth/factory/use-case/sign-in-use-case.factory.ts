@@ -1,5 +1,5 @@
 import { SignInUseCase } from '@/auth/use-case/sign-in.use-case'
-import { UserRepository } from '@/infra/database/repository/user.repository'
+import { UserRepository } from '@/infra/database/repository'
 
 export function makeSignInUseCase(): SignInUseCase {
   const userRepository: UserRepository = new UserRepository()

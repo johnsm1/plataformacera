@@ -1,6 +1,6 @@
 export interface IVehicle extends Document {
   id?: string
-  make: string
+  numberPlate: string
   model: string
-  year: number
+  year: string
 }

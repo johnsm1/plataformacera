@@ -1,7 +1,7 @@
 import { IClient } from '@/client/entity/client.entity'
 import { Schema } from 'mongoose'
 
-export const clientSchema: Schema<IClient> = new Schema(
+export const ClientSchema: Schema<IClient> = new Schema(
   {
     id: { type: String, required: true, unique: true },
     name: { type: String, required: true },
