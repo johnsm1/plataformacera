@@ -1,15 +1,13 @@
 import { type Request, type Response } from 'express'
-import { validate } from 'class-validator'
 
-import { HttpException } from '@/common/exception/http-exception.error'
 import {
   RefreshTokenUseCase,
   SignInUseCase,
   SignUpUseCase,
 } from '@/auth/use-case'
 import { plainToClass } from 'class-transformer'
-import { returnMessageErrors } from '@/common/helper/error-message-map'
 import { SignInRequestDto, SignUpRequestDto, SignUpResponseDto } from '../dto'
+import { validateDto } from '@/common/validator/validate-error'
 
 export class AuthController {
   constructor(
@@ -27,24 +25,14 @@ export class AuthController {
       req.body.email,
       req.body.password
     )
-    const errors = await validate(signInRequestDto)
-    const messages = returnMessageErrors(errors)
-
-    if (messages) {
-      throw new HttpException(messages, 400)
-    }
+    await validateDto(signInRequestDto)
     const response = await this.signInUseCase.execute(signInRequestDto)
     return res.json(response)
   }
 
   async signUp(req: Request, res: Response) {
     const signUpRequestDto = plainToClass(SignUpRequestDto, req.body)
-    const errors = await validate(signUpRequestDto)
-    const messages = returnMessageErrors(errors)
-
-    if (messages) {
-      throw new HttpException(messages, 400)
-    }
+    await validateDto(signUpRequestDto)
 
     const signUpResponseDto: SignUpResponseDto =
       await this.signUpUseCase.execute(signUpRequestDto)

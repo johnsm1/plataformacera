@@ -13,15 +13,14 @@ export class FindByUseCase
   async execute(
     criteria: ServiceCriteriaDto
   ): Promise<PaginationResultDto<IService>> {
-    const { serviceId, vehicleId, clientId, status, page, limit } = criteria
+    const { _id, vehicle, client, status, page = 1, limit = 10 } = criteria
 
-    const filter: Partial<ServiceCriteriaDto> = {
-      ...(serviceId && { serviceId }),
-      ...(vehicleId && { vehicleId }),
-      ...(clientId && { clientId }),
+    const filter: Partial<IService> = {
+      ...(_id && { _id }),
+      ...(vehicle && { vehicle }),
+      ...(client && { client }),
       ...(status && { status }),
     }
-
-    return this.serviceRepository.find(filter, { page, limit })
+    return await this.serviceRepository.findBy(filter, { page, limit })
   }
 }

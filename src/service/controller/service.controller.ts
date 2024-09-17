@@ -14,6 +14,8 @@ import { ServiceResponseDTO } from '../dto/service-response.dto'
 import mongoose from 'mongoose'
 import { HttpException } from '@/common/exception/http-exception.error'
 import { ServiceCriteriaDto } from '../dto/service-criteria.dto'
+import { validateDto } from '@/common/validator/validate-error'
+import { validateId } from '@/common/validator/validate-object-id.dto'
 
 export class ServiceController {
   constructor(
@@ -34,7 +36,7 @@ export class ServiceController {
 
   async create(req: Request, res: Response) {
     const serviceRequestDto = plainToClass(ServiceRequestDTO, req.body)
-
+    await validateDto(serviceRequestDto)
     const result: ServiceResponseDTO =
       await this.createUseCase.execute(serviceRequestDto)
 
@@ -48,9 +50,7 @@ export class ServiceController {
 
   async delete(req: Request, res: Response) {
     const id = req.params.id
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new HttpException('Invalid ID format', 400)
-    }
+    validateId(id)
     const result = await this.deleteUseCase.execute(id)
 
     if (!result) {
@@ -60,14 +60,19 @@ export class ServiceController {
     return res.json('Resource deleted successfully')
   }
 
-  async find(id: string) {
-    return this.findUseCase.execute(id)
+  async find(req: Request, res: Response) {
+    const id = req.params.id
+    validateId(id)
+    return res.json(await this.findUseCase.execute(id)).sendStatus(200)
   }
 
   async findBy(req: Request, res: Response) {
     const serviceCriteriaDto = plainToClass(ServiceCriteriaDto, req.query)
+    await validateDto(serviceCriteriaDto)
 
-    return this.findByUseCase.execute(serviceCriteriaDto)
+    return res
+      .json(await this.findByUseCase.execute(serviceCriteriaDto))
+      .status(200)
   }
 
   async findAll(req: Request, res: Response) {

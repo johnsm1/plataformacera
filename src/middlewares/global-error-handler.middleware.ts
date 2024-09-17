@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { HttpException } from '@/common/exception/http-exception.error'
 import { NextFunction, Request, Response } from 'express'
 
@@ -8,6 +7,10 @@ export function globalErrorHandlerMiddlerware(
   res: Response,
   next: NextFunction
 ) {
+  if (res.headersSent) {
+    return next()
+  }
+
   if (error instanceof HttpException) {
     const statusCode = error.statusCode
     const message = error.errors

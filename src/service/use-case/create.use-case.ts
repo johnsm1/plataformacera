@@ -7,28 +7,32 @@ import {
   ServiceRepository,
   VehicleRepository,
 } from '@/infra/database/repository'
-import { IClient } from '@/client/entity/client.entity'
-import { IVehicle } from '@/vehicle/entity/vehicle.entity'
 import { IService } from '../entity/service.entity'
+import { returnMessageErrors } from '@/common/helper/error-message-map'
+import { validate } from 'class-validator'
+import { validateDto } from '@/common/validator/validate-error'
+import ClientFacade from '@/facade/client.facade'
+import VehicleFacade from '@/facade/vehicle.facade'
 
 export class CreateUseCase
   implements UseCase<ServiceRequestDTO, ServiceResponseDTO>
 {
   constructor(
-    private clientRepository: ClientRepository,
-    private vehicleRepository: VehicleRepository,
-    private serviceRepository: ServiceRepository
+    private serviceRepository: ServiceRepository,
+    private clientFacade: ClientFacade,
+    private vehicleFacade: VehicleFacade
   ) {
-    this.clientRepository = clientRepository
-    this.vehicleRepository = vehicleRepository
+    this.clientFacade = clientFacade
+    this.vehicleFacade = vehicleFacade
     this.serviceRepository = serviceRepository
   }
   async execute(input: ServiceRequestDTO): Promise<ServiceResponseDTO> {
     const { client, vehicle, description, status, dateService, value } = input
+    validateDto(input)
 
     const [savedClient, savedVehicle] = await Promise.all([
-      this.clientRepository.save(client),
-      this.vehicleRepository.save(vehicle),
+      this.clientFacade.save(client),
+      this.vehicleFacade.save(vehicle),
     ])
 
     const newService: IService = {
@@ -40,6 +44,7 @@ export class CreateUseCase
       dateService,
     }
     const savedService = await this.serviceRepository.save(newService)
+    console.log(savedService)
 
     return new ServiceResponseDTO(savedService._id)
   }

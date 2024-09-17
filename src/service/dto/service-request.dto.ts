@@ -7,10 +7,6 @@ import { VehicleRequestDTO } from '@/vehicle/dto/vehicle-request.dto'
 export class ServiceRequestDTO {
   @IsString()
   @IsNotEmpty()
-  serviceId: string
-
-  @IsString()
-  @IsNotEmpty()
   description: string
 
   @ValidateNested()

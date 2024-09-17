@@ -3,4 +3,5 @@ export interface PaginationResultDto<T> {
   total: number
   page: number
   pages: number
+  filteredFields?: string[]
 }
