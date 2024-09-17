@@ -25,6 +25,9 @@ export class ServiceRequestDTO {
   @IsNotEmpty()
   status: ServiceStatus
 
+  @IsNotEmpty()
+  dateService: Date
+
   @IsNumber()
   value: number
 }

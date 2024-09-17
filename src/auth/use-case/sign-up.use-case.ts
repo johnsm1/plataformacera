@@ -21,11 +21,11 @@ export class SignUpUseCase
   }
 
   async execute(input: SignUpRequestDto): Promise<SignUpResponseDto> {
-    const { name, email, password } = input
+    const { name, email, password, role } = input
 
     const saltOrRounds = 1
     const hash = await bcrypt.hash(password, saltOrRounds)
-    const roles: IRole[] = await this.roleRepository.findAllByName(['ADMIN'])
+    const roles: IRole[] = await this.roleRepository.findAllByName([role])
 
     const userExist = await this.userRepository.findOneByEmail(email)
     if (userExist) {

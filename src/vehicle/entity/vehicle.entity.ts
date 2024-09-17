@@ -1,5 +1,7 @@
-export interface IVehicle extends Document {
-  id?: string
+import { Types } from 'mongoose'
+
+export interface IVehicle {
+  _id?: Types.ObjectId
   numberPlate: string
   model: string
   year: string

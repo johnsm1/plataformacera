@@ -1,13 +1,12 @@
-import { IClient } from '@/client/entity/client.entity'
-import { IVehicle } from '@/vehicle/entity/vehicle.entity'
 import { ServiceStatus } from '../enum/service-status.enum'
+import { Types } from 'mongoose'
 
 export interface IService {
-  serviceId: string
+  _id?: Types.ObjectId
   description: string
-  date: Date
-  vehicle: IVehicle
-  client: IClient
+  dateService: Date
+  vehicle: Types.ObjectId
+  client: Types.ObjectId
   status: ServiceStatus
   value: number
 }

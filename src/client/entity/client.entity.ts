@@ -1,5 +1,7 @@
+import { Types } from 'mongoose'
+
 export interface IClient {
-  id?: string
+  _id?: Types.ObjectId
   name: string
   contactInfo: string
 }

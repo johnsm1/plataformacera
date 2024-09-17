@@ -1,7 +1,6 @@
 import { IClient } from '@/client/entity/client.entity'
 import { Repository } from '@/common/repository'
 import { Model } from 'mongoose'
-import { mapObjectId } from '../helper'
 import { ClientModel } from '../model/client.model'
 
 export class ClientRepository implements Repository<IClient> {
@@ -15,8 +14,6 @@ export class ClientRepository implements Repository<IClient> {
   }
 
   async save(entity: IClient): Promise<IClient> {
-    const document = await this.model.create(entity)
-
-    return mapObjectId(document.toObject())
+    return await this.model.create(entity)
   }
 }

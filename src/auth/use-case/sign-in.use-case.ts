@@ -41,7 +41,7 @@ export class SignInUseCase
       expireIn,
       user.roles
     )
-
+    console.log(signInResponseDto)
     return signInResponseDto
   }
 }

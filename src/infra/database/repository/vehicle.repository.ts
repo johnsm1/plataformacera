@@ -2,7 +2,6 @@ import { IVehicle } from '@/vehicle/entity/vehicle.entity'
 import { VehicleModel } from '../model/vehicle.model'
 import { Repository } from '@/common/repository'
 import { Model } from 'mongoose'
-import { mapObjectId } from '../helper'
 
 export class VehicleRepository implements Repository<IVehicle> {
   private model: Model<IVehicle>
@@ -15,8 +14,6 @@ export class VehicleRepository implements Repository<IVehicle> {
   }
 
   async save(entity: IVehicle): Promise<IVehicle> {
-    const document = await this.model.create(entity)
-
-    return mapObjectId(document.toObject())
+    return await this.model.create(entity)
   }
 }

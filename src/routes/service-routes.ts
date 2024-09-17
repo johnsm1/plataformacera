@@ -9,6 +9,6 @@ export default (router: Router): void => {
   router.put('/service/:id', controllerAdapter(serviceController, 'update'))
   router.get('/service/search', controllerAdapter(serviceController, 'findBy'))
   router.get('/service', controllerAdapter(serviceController, 'findAll'))
-  router.get('/service', controllerAdapter(serviceController, 'find'))
+  router.get('/service/:id', controllerAdapter(serviceController, 'find'))
   router.delete('/service/:id', controllerAdapter(serviceController, 'delete'))
 }
