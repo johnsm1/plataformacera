@@ -1,4 +1,3 @@
-export * from './client.repository'
 export * from './role.repository'
 export * from './vehicle.repository'
 export * from './service.repository'
