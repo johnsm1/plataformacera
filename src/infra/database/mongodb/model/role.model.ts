@@ -1,6 +1,5 @@
+import { IRole } from '@/core/auth/entity/role.entity'
 import { model } from 'mongoose'
+import { RoleSchema } from '../schema'
 
-import { IRole } from '@/auth/entity/role.entity'
-import { RoleSchema } from '@/infra/database/schema'
-
-export const RoleModel = model<IRole>('Role', RoleSchema, 'role')
+export const RoleModel = model<IRole>('Role', RoleSchema, 'roles')

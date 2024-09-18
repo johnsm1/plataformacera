@@ -1,5 +1,5 @@
-import { VehicleRepository } from '@/infra/database/repository'
 import { IVehicle } from '@/core/vehicle/entity/vehicle.entity'
+import { VehicleRepository } from '@/infra/database/mongodb/repository'
 
 class VehicleFacade {
   private vehicleRepository: VehicleRepository

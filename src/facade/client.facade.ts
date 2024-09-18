@@ -1,5 +1,5 @@
 import { IClient } from '@/core/client/entity/client.entity'
-import { ClientRepository } from '@/infra/database/repository'
+import { ClientRepository } from '@/infra/database/mongodb/repository'
 
 class ClientFacade {
   private clientRepository: ClientRepository

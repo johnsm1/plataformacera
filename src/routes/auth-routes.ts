@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
-import { makeAuthController } from '@/auth/factory/controller'
 import { controllerAdapter } from '@/common/adapter/controller-adpater'
+import { makeAuthController } from '@/core/auth/factory/controller'
 
 export default (router: Router): void => {
   const authController = makeAuthController()

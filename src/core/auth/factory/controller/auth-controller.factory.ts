@@ -1,14 +1,26 @@
-import { AuthController } from '@/auth/controller/auth.controller'
+// import { AuthController } from '@/auth/controller/auth.controller'
+// import {
+//   RefreshTokenUseCase,
+//   SignInUseCase,
+//   SignUpUseCase,
+// } from '@/auth/use-case'
+// import {
+//   makeSignUpUseCase,
+//   makeSignInUseCase,
+//   makeRefreshToken,
+// } from '@/auth/factory/use-case'
+
+import { AuthController } from '../../controller/auth.controller'
 import {
   RefreshTokenUseCase,
   SignInUseCase,
   SignUpUseCase,
-} from '@/auth/use-case'
+} from '../../use-case'
 import {
-  makeSignUpUseCase,
-  makeSignInUseCase,
   makeRefreshToken,
-} from '@/auth/factory/use-case'
+  makeSignInUseCase,
+  makeSignUpUseCase,
+} from '../use-case'
 
 export function makeAuthController(): AuthController {
   const signUpUseCase: SignUpUseCase = makeSignUpUseCase()

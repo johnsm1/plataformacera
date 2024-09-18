@@ -1,7 +1,11 @@
 import { connect, Mongoose } from 'mongoose'
 
 import { logger } from '@/config/logger'
-import { RoleModel, UserModel } from '@/infra/database/model'
+import {
+  RoleModel,
+  UserModel,
+  CustomerModel,
+} from '@/infra/database/mongodb/model'
 import config from '@/config/env-config'
 
 export class Mongo {
@@ -35,5 +39,6 @@ export class Mongo {
 
     await RoleModel.createCollection()
     await UserModel.createCollection()
+    await CustomerModel.createCollection()
   }
 }

@@ -4,7 +4,7 @@ import {
   RefreshTokenUseCase,
   SignInUseCase,
   SignUpUseCase,
-} from '@/auth/use-case'
+} from '@/core/auth/use-case'
 import { plainToClass } from 'class-transformer'
 import { SignInRequestDto, SignUpRequestDto, SignUpResponseDto } from '../dto'
 import { validateDto } from '@/common/validator/validate-error'

@@ -1,5 +1,5 @@
-import { RefreshTokenUseCase } from '@/auth/use-case'
-import { UserRepository } from '@/infra/database/repository/user.repository'
+import { RefreshTokenUseCase } from '@/core/auth/use-case'
+import { UserRepository } from '@/infra/database/mongodb/repository'
 
 export function makeRefreshToken(): RefreshTokenUseCase {
   const userRepository: UserRepository = new UserRepository()

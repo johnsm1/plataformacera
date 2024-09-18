@@ -1,9 +1,9 @@
 import { Repository } from '@/common/repository'
-import { IService } from '@/service/entity/service.entity'
 import { Model, Types } from 'mongoose'
 import { ServiceModel } from '../model/service.model'
 import { PaginationOptionDto } from '@/common/dto/option-pagination.dto'
 import { PaginationResultDto } from '@/common/dto/pagination-result.dto'
+import { IService } from '@/core/service/entity/service.entity'
 
 export class ServiceRepository implements Repository<IService> {
   private model: Model<IService>

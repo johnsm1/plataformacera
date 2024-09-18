@@ -1,10 +1,10 @@
-import { makeJwtService } from '@/auth/factory/service/jwt-service-factory'
 import { UseCase } from '@/common/usecase/use-case.interface'
 import { RefreshTokenResponseDto } from '../dto/refresh-token-response.dto'
-import { UserRepository } from '@/infra/database/repository/user.repository'
-import { JwtPayloadDto } from '@/auth/dto'
+import { JwtPayloadDto } from '@/core/auth/dto'
 import { HttpException } from '@/common/exception/http-exception.error'
 import { IUser } from '@/core/user/entity/user.entity'
+import { UserRepository } from '@/infra/database/mongodb/repository'
+import { makeJwtService } from '../factory/service/jwt-service-factory'
 
 export class RefreshTokenUseCase
   implements UseCase<string, RefreshTokenResponseDto>

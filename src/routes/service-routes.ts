@@ -1,5 +1,5 @@
 import { controllerAdapter } from '@/common/adapter/controller-adpater'
-import { makeServiceController } from '@/service/factory/controller/service-controller.factory'
+import { makeServiceController } from '@/core/service/factory/controller/service-controller.factory'
 import { Router } from 'express'
 
 export default (router: Router): void => {

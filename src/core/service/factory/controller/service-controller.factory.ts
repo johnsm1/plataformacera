@@ -1,4 +1,4 @@
-import { ServiceController } from '@/service/controller/service.controller'
+import { ServiceController } from '@/core/service/controller/service.controller'
 import {
   makeCreateUseCase,
   makeDeleteUseCase,

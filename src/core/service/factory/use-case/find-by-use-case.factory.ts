@@ -1,5 +1,5 @@
 import ServiceFacade from '@/facade/service.facade'
-import { FindByUseCase } from '@/service/use-case'
+import { FindByUseCase } from '../../use-case'
 
 export function makeFindByUseCase(): FindByUseCase {
   const serviceFacade = ServiceFacade.makeServiceFacade()

@@ -1,7 +1,7 @@
 import ClientFacade from '@/facade/client.facade'
 import ServiceFacade from '@/facade/service.facade'
 import VehicleFacade from '@/facade/vehicle.facade'
-import { CreateUseCase } from '@/service/use-case'
+import { CreateUseCase } from '@/core/service/use-case'
 
 export function makeCreateUseCase(): CreateUseCase {
   const vehicleFacade = VehicleFacade.makeVehicleFacade()

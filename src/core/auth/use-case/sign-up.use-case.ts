@@ -1,13 +1,15 @@
 import * as bcrypt from 'bcrypt'
 
 import { UseCase } from '@/common/usecase/use-case.interface'
-import { SignUpRequestDto } from '@/auth/dto'
-import { RoleRepository } from '@/infra/database/repository/role.repository'
-import { UserRepository } from '@/infra/database/repository/user.repository'
+import { SignUpRequestDto } from '@/core/auth/dto'
 import { IUser } from '@/core/user/entity/user.entity'
 import { HttpException } from '@/common/exception/http-exception.error'
 import { SignUpResponseDto } from '../dto/sign-up-response.dto'
 import { IRole } from '../entity/role.entity'
+import {
+  RoleRepository,
+  UserRepository,
+} from '@/infra/database/mongodb/repository'
 
 export class SignUpUseCase
   implements UseCase<SignUpRequestDto, SignUpResponseDto>

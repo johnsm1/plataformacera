@@ -1,6 +1,8 @@
-import { SignUpUseCase } from '@/auth/use-case'
-import { RoleRepository } from '@/infra/database/repository/role.repository'
-import { UserRepository } from '@/infra/database/repository/user.repository'
+import { SignUpUseCase } from '@/core/auth/use-case'
+import {
+  RoleRepository,
+  UserRepository,
+} from '@/infra/database/mongodb/repository'
 
 export function makeSignUpUseCase(): SignUpUseCase {
   const roleRepository: RoleRepository = new RoleRepository()

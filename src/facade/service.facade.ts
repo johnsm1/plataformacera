@@ -1,7 +1,7 @@
 import { PaginationOptionDto } from '@/common/dto/option-pagination.dto'
 import { PaginationResultDto } from '@/common/dto/pagination-result.dto'
-import { ServiceRepository } from '@/infra/database/repository'
-import { IService } from '@/service/entity/service.entity'
+import { IService } from '@/core/service/entity/service.entity'
+import { ServiceRepository } from '@/infra/database/mongodb/repository'
 import { Types } from 'mongoose'
 
 class ServiceFacade {

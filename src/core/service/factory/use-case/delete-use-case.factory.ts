@@ -1,5 +1,5 @@
 import ServiceFacade from '@/facade/service.facade'
-import { DeleteUseCase } from '@/service/use-case'
+import { DeleteUseCase } from '../../use-case'
 
 export function makeDeleteUseCase(): DeleteUseCase {
   const serviceFacade = ServiceFacade.makeServiceFacade()

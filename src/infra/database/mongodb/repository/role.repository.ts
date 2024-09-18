@@ -1,9 +1,9 @@
 import { Model } from 'mongoose'
 
-import { IRole } from '@/auth/entity/role.entity'
+import { IRole } from '@/core/auth/entity/role.entity'
 import { Repository } from '@/common/repository'
-import { RoleModel } from '@/infra/database/model'
-import { mapObjectId } from '@/infra/database/helper/map-object-id'
+import { RoleModel } from '../model'
+import { mapObjectId } from '../helper'
 
 export class RoleRepository implements Repository<IRole> {
   private model: Model<IRole>

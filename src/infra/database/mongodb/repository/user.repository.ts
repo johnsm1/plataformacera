@@ -1,9 +1,8 @@
 import { Model } from 'mongoose'
-
 import { Repository } from '@/common/repository'
 import { IUser } from '@/core/user/entity/user.entity'
-import { UserModel } from '@/infra/database/model'
-import { mapObjectId } from '@/infra/database/helper'
+import { UserModel } from '../model'
+import { mapObjectId } from '../helper'
 
 export class UserRepository implements Repository<IUser> {
   private model: Model<IUser>
