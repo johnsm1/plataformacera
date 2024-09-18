@@ -1,12 +1,15 @@
 import { type Request, type Response } from 'express'
-
 import {
   RefreshTokenUseCase,
   SignInUseCase,
   SignUpUseCase,
 } from '@/core/auth/use-case'
 import { plainToClass } from 'class-transformer'
-import { SignInRequestDto, SignUpRequestDto, SignUpResponseDto } from '../dto'
+import {
+  SignInRequestDto,
+  SignUpRequestDto,
+  SignUpResponseDto,
+} from '@/core/auth/dto'
 import { validateDto } from '@/common/validator/validate-error'
 
 export class AuthController {

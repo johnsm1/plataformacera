@@ -15,6 +15,7 @@ export function globalErrorHandlerMiddlerware(
     const statusCode = error.statusCode
     const message = error.errors
     const description = error.description
+
     return res.status(statusCode).json({
       success: false,
       message,
