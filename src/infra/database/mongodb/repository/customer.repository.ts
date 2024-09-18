@@ -1,7 +1,7 @@
 import { Repository } from '@/common/repository'
 import { ICustomer } from '@/core/customer/entity'
 import { CustomerModel } from '@/infra/database/mongodb/model'
-import { Model } from 'mongoose'
+import { isObjectIdOrHexString, Model } from 'mongoose'
 import { mapObjectId } from '@/infra/database/mongodb/helper'
 import { logger } from '@/config/logger'
 
@@ -14,7 +14,16 @@ export class CustomerRepository implements Repository<ICustomer> {
 
   async findById(id: string): Promise<ICustomer | undefined> {
     try {
+      if (!isObjectIdOrHexString(id)) {
+        return undefined
+      }
+
       const document = await this.model.findById(id)
+
+      if (!document) {
+        return undefined
+      }
+
       return mapObjectId(document.toObject())
     } catch (error) {
       logger.error(error.message)
