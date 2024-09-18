@@ -28,6 +28,7 @@ export class CustomerRepository implements Repository<ICustomer> {
       return mapObjectId(document.toObject())
     } catch (error) {
       logger.error(error)
+      throw error
     }
   }
 }

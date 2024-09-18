@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { controllerAdapter } from '@/common/adapter/controller-adpater'
+import { controllerAdapter } from '@/common/adapter/controller-adapater'
 import { makeAuthController } from '@/core/auth/factory/controller'
 
 export default (router: Router): void => {

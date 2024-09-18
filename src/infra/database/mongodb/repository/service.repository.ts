@@ -1,9 +1,11 @@
 import { Repository } from '@/common/repository'
 import { Model, Types } from 'mongoose'
-import { ServiceModel } from '../model/service.model'
+import { ServiceModel } from '@/infra/database/mongodb/model'
 import { PaginationOptionDto } from '@/common/dto/option-pagination.dto'
 import { PaginationResultDto } from '@/common/dto/pagination-result.dto'
 import { IService } from '@/core/service/entity/service.entity'
+import { mapObjectId } from '@/infra/database/mongodb/helper'
+import { logger } from '@/config/logger'
 
 export class ServiceRepository implements Repository<IService> {
   private model: Model<IService>
@@ -61,6 +63,23 @@ export class ServiceRepository implements Repository<IService> {
   }
 
   async save(entity: IService): Promise<IService> {
-    return await this.model.create(entity)
+    try {
+      const { vehicle, customer, ...rest } = entity
+
+      const documentFromDb = await this.model.create({
+        ...rest,
+        vehicle: vehicle.id,
+        customer: customer.id,
+      })
+
+      const document = await this.model
+        .findById(documentFromDb._id)
+        .populate(['customer', 'vehicle'])
+
+      return mapObjectId(document.toObject())
+    } catch (error) {
+      logger.error(error.message)
+      throw error
+    }
   }
 }

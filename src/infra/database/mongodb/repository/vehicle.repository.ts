@@ -28,6 +28,7 @@ export class VehicleRepository implements Repository<IVehicle> {
       return mapObjectId(document.toObject())
     } catch (error) {
       logger.error(error)
+      throw error
     }
   }
 }

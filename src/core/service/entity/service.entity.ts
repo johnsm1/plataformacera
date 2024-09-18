@@ -1,12 +1,13 @@
-import { ServiceStatus } from '../enum/service-status.enum'
-import { Types } from 'mongoose'
+import { BaseEntity } from '@/common/entity/base-entity.interface'
+import { ServiceStatus } from '@/core/service/enum'
+import { ICustomer } from '@/core/customer/entity'
+import { IVehicle } from '@/core/vehicle/entity'
 
-export interface IService {
-  _id?: Types.ObjectId
+export interface IService extends BaseEntity {
   description: string
-  dateService: Date
-  vehicle: Types.ObjectId
-  client: Types.ObjectId
+  completionDate: Date
+  vehicle: IVehicle
+  customer: ICustomer
   status: ServiceStatus
   value: number
 }

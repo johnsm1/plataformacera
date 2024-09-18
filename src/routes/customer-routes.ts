@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { controllerAdapter } from '@/common/adapter/controller-adpater'
+import { controllerAdapter } from '@/common/adapter/controller-adapater'
 import { CustomerControllerFactory } from '@/core/customer/factory'
 
 export default (router: Router): void => {
