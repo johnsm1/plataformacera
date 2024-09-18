@@ -1,22 +1,16 @@
 import { ICustomer } from '@/core/customer/entity/customer.entity'
-import { CustomerDto } from '@/core/customer/dto/customer.dto'
+import { SaveCustomerInputDto } from '@/core/customer/dto/customer.dto'
 
 export class CustomerMapper {
-  public static mapToEntity(dto: CustomerDto): ICustomer {
+  public static mapToEntity(dto: SaveCustomerInputDto): ICustomer {
+    const { name } = dto
     const entity: ICustomer = {
-      id: dto.id,
-      name: dto.name,
+      name: name,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      deletedAt: null,
     }
 
     return entity
-  }
-
-  public static mapToDto(entity: ICustomer): CustomerDto {
-    const dto: CustomerDto = {
-      id: entity.id,
-      name: entity.name,
-    }
-
-    return dto
   }
 }

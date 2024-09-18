@@ -1,8 +1,7 @@
-import { Types } from 'mongoose'
+import { BaseEntity } from '@/common/entity/base-entity.interface'
 
-export interface IVehicle {
-  _id?: Types.ObjectId
+export interface IVehicle extends BaseEntity {
   numberPlate: string
   model: string
-  year: string
+  year: number
 }

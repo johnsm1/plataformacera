@@ -16,11 +16,12 @@ export class CustomerController {
   }
 
   public async save(req: Request, res: Response) {
-    const saveCustomerDto = new SaveCustomerInputDto(req.body.name)
+    const saveCustomerInputDto = new SaveCustomerInputDto(req.body.name)
 
-    await validateDto(saveCustomerDto)
+    await validateDto(saveCustomerInputDto)
 
-    const newCustomer = await this.saveCustomerUseCase.execute(saveCustomerDto)
+    const newCustomer =
+      await this.saveCustomerUseCase.execute(saveCustomerInputDto)
 
     return res.status(201).json(newCustomer)
   }

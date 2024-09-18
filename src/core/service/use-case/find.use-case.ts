@@ -14,24 +14,26 @@ export class FindUseCase implements UseCase<string, ServiceResponseDTO> {
     this.clientFacade = clientFacade
     this.vehicleFacade = vehicleFacade
   }
-  async execute(id: string): Promise<ServiceResponseDTO> {
-    const { client, dateService, description, status, value, vehicle, _id } =
-      await this.serviceFacade.findById(id)
+  async execute(): Promise<ServiceResponseDTO> {
+    // const { client, dateService, description, status, value, vehicle, _id } =
+    //   await this.serviceFacade.findById(id)
 
-    const [savedClient, savedVehicle] = await Promise.all([
-      this.clientFacade.getClient(String(client)),
-      this.vehicleFacade.getVehicleFacade(String(vehicle)),
-    ])
+    // const [savedClient, savedVehicle] = await Promise.all([
+    //   this.clientFacade.getClient(String(client)),
+    //   this.vehicleFacade.getVehicleFacade(String(vehicle)),
+    // ])
 
-    const serviceResponseDTO: ServiceResponseDTO = {
-      id: _id,
-      client: savedClient,
-      vehicle: savedVehicle,
-      status,
-      value,
-      description,
-      dateService,
-    }
-    return serviceResponseDTO
+    // const serviceResponseDTO: ServiceResponseDTO = {
+    //   id: _id,
+    //   client: savedClient,
+    //   vehicle: savedVehicle,
+    //   status,
+    //   value,
+    //   description,
+    //   dateService,
+    // }
+    // return serviceResponseDTO
+
+    throw new Error('Metod not implemented')
   }
 }

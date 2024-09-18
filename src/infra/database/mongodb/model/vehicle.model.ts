@@ -1,5 +1,9 @@
 import { model } from 'mongoose'
+import { vehicleSchema } from '@/infra/database/mongodb/schema'
+import { IVehicle } from '@/core/vehicle/entity'
 
-import { IVehicleDocument, VehicleSchema } from '../schema/vehicle.schema'
-
-export const VehicleModel = model<IVehicleDocument>('Vehicle', VehicleSchema)
+export const VehicleModel = model<IVehicle>(
+  'Vehicle',
+  vehicleSchema,
+  'vehicles'
+)

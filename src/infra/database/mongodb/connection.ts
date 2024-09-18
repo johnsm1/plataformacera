@@ -5,6 +5,7 @@ import {
   RoleModel,
   UserModel,
   CustomerModel,
+  VehicleModel,
 } from '@/infra/database/mongodb/model'
 import config from '@/config/env-config'
 
@@ -40,5 +41,6 @@ export class Mongo {
     await RoleModel.createCollection()
     await UserModel.createCollection()
     await CustomerModel.createCollection()
+    await VehicleModel.createCollection()
   }
 }

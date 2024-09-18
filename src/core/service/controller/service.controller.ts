@@ -34,17 +34,15 @@ export class ServiceController {
   }
 
   async create(req: Request, res: Response) {
-    const serviceRequestDto = plainToClass(ServiceRequestDTO, req.body)
-    await validateDto(serviceRequestDto)
-    const result: ServiceResponseDTO =
-      await this.createUseCase.execute(serviceRequestDto)
-
-    const locationUrl = `${req.protocol}://${req.get('host')}/api/service/${result.id}`
-
-    return res
-      .status(201)
-      .location(locationUrl)
-      .json({ id: result.id, url: locationUrl })
+    // const serviceRequestDto = plainToClass(ServiceRequestDTO, req.body)
+    // await validateDto(serviceRequestDto)
+    // const result: ServiceResponseDTO =
+    //   await this.createUseCase.execute(serviceRequestDto)
+    // const locationUrl = `${req.protocol}://${req.get('host')}/api/service/${result.id}`
+    // return res
+    //   .status(201)
+    //   .location(locationUrl)
+    //   .json({ id: result.id, url: locationUrl })
   }
 
   async delete(req: Request, res: Response) {
@@ -60,9 +58,10 @@ export class ServiceController {
   }
 
   async find(req: Request, res: Response) {
-    const id = req.params.id
-    validateId(id)
-    return res.json(await this.findUseCase.execute(id)).sendStatus(200)
+    // const id = req.params.id
+    // validateId(id)
+    // return res.json(await this.findUseCase.execute(id)).sendStatus(200)
+    throw new Error('Metod not implemented')
   }
 
   async findBy(req: Request, res: Response) {
