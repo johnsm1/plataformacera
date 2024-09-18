@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcrypt'
 
 import { SignInRequestDto } from '../dto/sign-in-request.dto'
-import { IUser } from '@/user/entity/user.entity'
+import { IUser } from '@/core/user/entity/user.entity'
 import { UserRepository } from '@/infra/database/repository/user.repository'
 import { HttpException } from '@/common/exception/http-exception.error'
 import { makeJwtService } from '@/auth/factory/service/jwt-service-factory'

@@ -1,4 +1,4 @@
-import { IVehicle } from '@/vehicle/entity/vehicle.entity'
+import { IVehicle } from '@/core/vehicle/entity/vehicle.entity'
 import { Schema } from 'mongoose'
 export interface IVehicleDocument extends IVehicle, Document {}
 export const VehicleSchema: Schema<IVehicleDocument> = new Schema(

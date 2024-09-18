@@ -1,4 +1,4 @@
-import { IClient } from '@/client/entity/client.entity'
+import { IClient } from '@/core/client/entity/client.entity'
 import { Repository } from '@/common/repository'
 import { Model } from 'mongoose'
 import { ClientModel } from '../model/client.model'

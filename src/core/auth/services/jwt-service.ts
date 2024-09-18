@@ -1,5 +1,5 @@
 import { logger } from '@/config/logger'
-import { IUser } from '@/user/entity/user.entity'
+import { IUser } from '@/core/user/entity/user.entity'
 import { JwtPayload, sign, verify } from 'jsonwebtoken'
 import config from '@/config/env-config' // Ajuste o caminho conforme necessário
 

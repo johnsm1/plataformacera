@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose'
 
-import { IUser } from '@/user/entity/user.entity'
+import { IUser } from '@/core/user/entity/user.entity'
 
 export const UserSchema = new Schema<IUser>({
   name: { type: String, required: true },

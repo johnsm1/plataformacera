@@ -1,4 +1,4 @@
-import { IVehicle } from '@/vehicle/entity/vehicle.entity'
+import { IVehicle } from '@/core/vehicle/entity/vehicle.entity'
 import { VehicleModel } from '../model/vehicle.model'
 import { Repository } from '@/common/repository'
 import { Model } from 'mongoose'

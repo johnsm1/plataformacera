@@ -1,4 +1,4 @@
-import { IClient } from '@/client/entity/client.entity'
+import { IClient } from '@/core/client/entity/client.entity'
 import { ClientRepository } from '@/infra/database/repository'
 
 class ClientFacade {

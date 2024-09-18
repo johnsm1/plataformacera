@@ -1,4 +1,4 @@
-import { IClient } from '@/client/entity/client.entity'
+import { IClient } from '@/core/client/entity/client.entity'
 import { Schema } from 'mongoose'
 export interface IClientDocument extends IClient, Document {}
 export const ClientSchema: Schema<IClientDocument> = new Schema(

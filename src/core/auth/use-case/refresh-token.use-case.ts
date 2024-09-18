@@ -4,7 +4,7 @@ import { RefreshTokenResponseDto } from '../dto/refresh-token-response.dto'
 import { UserRepository } from '@/infra/database/repository/user.repository'
 import { JwtPayloadDto } from '@/auth/dto'
 import { HttpException } from '@/common/exception/http-exception.error'
-import { IUser } from '@/user/entity/user.entity'
+import { IUser } from '@/core/user/entity/user.entity'
 
 export class RefreshTokenUseCase
   implements UseCase<string, RefreshTokenResponseDto>

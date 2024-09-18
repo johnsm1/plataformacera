@@ -1,8 +1,8 @@
 import { IsNotEmpty, IsNumber, IsString, ValidateNested } from 'class-validator'
 import { Type } from 'class-transformer'
 import { ServiceStatus } from '../enum/service-status.enum'
-import { CreateClientRequestDTO } from '@/client/dto/client-request.dto'
-import { VehicleRequestDTO } from '@/vehicle/dto/vehicle-request.dto'
+import { CreateClientRequestDTO } from '@/core/client/dto/client-request.dto'
+import { VehicleRequestDTO } from '@/core/vehicle/dto/vehicle-request.dto'
 
 export class ServiceRequestDTO {
   @IsString()

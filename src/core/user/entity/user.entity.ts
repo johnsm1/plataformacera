@@ -1,4 +1,4 @@
-import { IRole } from '@/auth/entity/role.entity'
+import { IRole } from '@/core/auth/entity/role.entity'
 
 export interface IUser {
   id?: string
