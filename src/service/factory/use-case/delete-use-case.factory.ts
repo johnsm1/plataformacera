@@ -1,7 +1,7 @@
-import { ServiceRepository } from '@/infra/database/repository'
+import ServiceFacade from '@/facade/service.facade'
 import { DeleteUseCase } from '@/service/use-case'
 
 export function makeDeleteUseCase(): DeleteUseCase {
-  const serviceRepository = new ServiceRepository()
-  return new DeleteUseCase(serviceRepository)
+  const serviceFacade = ServiceFacade.makeServiceFacade()
+  return new DeleteUseCase(serviceFacade)
 }

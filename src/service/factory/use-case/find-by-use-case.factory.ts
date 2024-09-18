@@ -1,7 +1,7 @@
-import { ServiceRepository } from '@/infra/database/repository'
+import ServiceFacade from '@/facade/service.facade'
 import { FindByUseCase } from '@/service/use-case'
 
 export function makeFindByUseCase(): FindByUseCase {
-  const serviceRepository = new ServiceRepository()
-  return new FindByUseCase(serviceRepository)
+  const serviceFacade = ServiceFacade.makeServiceFacade()
+  return new FindByUseCase(serviceFacade)
 }

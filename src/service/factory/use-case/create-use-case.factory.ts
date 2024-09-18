@@ -1,11 +1,11 @@
 import ClientFacade from '@/facade/client.facade'
+import ServiceFacade from '@/facade/service.facade'
 import VehicleFacade from '@/facade/vehicle.facade'
-import { ServiceRepository } from '@/infra/database/repository'
 import { CreateUseCase } from '@/service/use-case'
 
 export function makeCreateUseCase(): CreateUseCase {
-  const vehicleRepository = VehicleFacade.makeVehicleFacade()
+  const vehicleFacade = VehicleFacade.makeVehicleFacade()
   const clientFacade = ClientFacade.makeClientFacade()
-  const serviceRepository = new ServiceRepository()
-  return new CreateUseCase(serviceRepository, clientFacade, vehicleRepository)
+  const serviceFacade = ServiceFacade.makeServiceFacade()
+  return new CreateUseCase(serviceFacade, clientFacade, vehicleFacade)
 }

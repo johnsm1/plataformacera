@@ -1,30 +1,23 @@
-/* eslint-disable */
 import { UseCase } from '@/common/usecase/use-case.interface'
 import { ServiceRequestDTO } from '../dto/service-request.dto'
 import { ServiceResponseDTO } from '../dto/service-response.dto'
-import {
-  ClientRepository,
-  ServiceRepository,
-  VehicleRepository,
-} from '@/infra/database/repository'
 import { IService } from '../entity/service.entity'
-import { returnMessageErrors } from '@/common/helper/error-message-map'
-import { validate } from 'class-validator'
 import { validateDto } from '@/common/validator/validate-error'
 import ClientFacade from '@/facade/client.facade'
 import VehicleFacade from '@/facade/vehicle.facade'
+import ServiceFacade from '@/facade/service.facade'
 
 export class CreateUseCase
   implements UseCase<ServiceRequestDTO, ServiceResponseDTO>
 {
   constructor(
-    private serviceRepository: ServiceRepository,
+    private serviceFacade: ServiceFacade,
     private clientFacade: ClientFacade,
     private vehicleFacade: VehicleFacade
   ) {
     this.clientFacade = clientFacade
     this.vehicleFacade = vehicleFacade
-    this.serviceRepository = serviceRepository
+    this.serviceFacade = serviceFacade
   }
   async execute(input: ServiceRequestDTO): Promise<ServiceResponseDTO> {
     const { client, vehicle, description, status, dateService, value } = input
@@ -43,7 +36,7 @@ export class CreateUseCase
       status,
       dateService,
     }
-    const savedService = await this.serviceRepository.save(newService)
+    const savedService = await this.serviceFacade.save(newService)
     console.log(savedService)
 
     return new ServiceResponseDTO(savedService._id)

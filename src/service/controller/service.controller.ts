@@ -11,7 +11,6 @@ import {
 import { ServiceRequestDTO } from '../dto/service-request.dto'
 import { Request, Response } from 'express'
 import { ServiceResponseDTO } from '../dto/service-response.dto'
-import mongoose from 'mongoose'
 import { HttpException } from '@/common/exception/http-exception.error'
 import { ServiceCriteriaDto } from '../dto/service-criteria.dto'
 import { validateDto } from '@/common/validator/validate-error'

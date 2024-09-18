@@ -16,7 +16,7 @@ class ClientFacade {
     return await this.clientRepository.save(client)
   }
 
-  public async getClientFacade(id: string): Promise<IClient> {
+  public async getClient(id: string): Promise<IClient> {
     return await this.clientRepository.findById(id)
   }
 }

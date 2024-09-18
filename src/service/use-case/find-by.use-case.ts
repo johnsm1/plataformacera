@@ -2,13 +2,13 @@ import { UseCase } from '@/common/usecase/use-case.interface'
 import { ServiceCriteriaDto } from '../dto/service-criteria.dto'
 import { IService } from '../entity/service.entity'
 import { PaginationResultDto } from '@/common/dto/pagination-result.dto'
-import { ServiceRepository } from '@/infra/database/repository'
+import ServiceFacade from '@/facade/service.facade'
 
 export class FindByUseCase
   implements UseCase<ServiceCriteriaDto, PaginationResultDto<IService>>
 {
-  constructor(private serviceRepository: ServiceRepository) {
-    this.serviceRepository = serviceRepository
+  constructor(private serviceFacade: ServiceFacade) {
+    this.serviceFacade = serviceFacade
   }
   async execute(
     criteria: ServiceCriteriaDto
@@ -21,6 +21,6 @@ export class FindByUseCase
       ...(client && { client }),
       ...(status && { status }),
     }
-    return await this.serviceRepository.findBy(filter, { page, limit })
+    return await this.serviceFacade.findBy(filter, { page, limit })
   }
 }
