@@ -33,6 +33,8 @@ Antes de executar o projeto, você precisa ter instalado:
 
    docker compose up : para subir o banco mongo
 
+   node seed.mjs : para rodar o seeder
+
    yarn run dev para rodar o projeto
 
    rodar os testes: yarn test

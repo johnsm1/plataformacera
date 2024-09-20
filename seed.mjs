@@ -8,7 +8,6 @@ const dbName = 'test'
 const roles = [
   { name: 'ADMIN', permissions: ['READ', 'WRITE', 'DELETE'] },
   { name: 'USER', permissions: ['READ'] },
-  { name: 'Moderator', permissions: ['READ', 'WRITE'] },
 ]
 
 const clientData = {
@@ -29,7 +28,7 @@ async function seedDatabase() {
   const client = new MongoClient(url, { useUnifiedTopology: true })
 
   try {
-    // Conecta ao cliente
+    
     await client.connect()
     console.log('Conectado ao MongoDB')
 
