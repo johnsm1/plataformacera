@@ -11,7 +11,6 @@ Descrição breve da aplicação e seu propósito.
 - ESLint
 - Husky
 
-
 link do swagger: http://localhost:3000/api-docs
 
 ## Pré-requisitos
@@ -35,6 +34,4 @@ Antes de executar o projeto, você precisa ter instalado:
    yarn run dev para rodar o projeto
 
    rodar os testes: yarn test
-
-
-
+   ```
