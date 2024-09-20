@@ -21,9 +21,7 @@ export class SaveServiceWithExistingEntitiesUseCase {
     input: SaveServiceWithExistingEntitiesInputDto
   ): Promise<IService> {
     const { customerId, vehicleId } = input
-
     const customer = await this.customerFacade.findById(customerId)
-
     if (!customer) {
       throw new HttpException(
         `Customer with ID ${customerId} was not found. Please verify the ID and try again.`,

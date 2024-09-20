@@ -6,9 +6,10 @@ import { PaginationResultDto } from '@/common/dto/pagination-result.dto'
 import { IService } from '@/core/service/entity/service.entity'
 import { mapObjectId } from '@/infra/database/mongodb/helper'
 import { logger } from '@/config/logger'
+import { ServiceFindByCriteriaDto, UpdateServiceDto } from '@/core/service/dto'
 
 export class ServiceRepository implements Repository<IService> {
-  private model: Model<IService>
+  model: Model<IService>
 
   constructor() {
     this.model = ServiceModel
@@ -17,49 +18,49 @@ export class ServiceRepository implements Repository<IService> {
     return await this.model.findByIdAndDelete(id)
   }
 
+  async findByIdAndUpdate(
+    id: Types.ObjectId,
+    dto: UpdateServiceDto
+  ): Promise<IService> | null {
+    const updatedDocument = await this.model.findByIdAndUpdate(id, dto, {
+      new: true,
+    })
+
+    if (!updatedDocument) {
+      return null
+    }
+
+    return updatedDocument as IService // Fazendo o cast para IService
+  }
+
   async findById(id: string): Promise<IService> {
     return await this.model.findById(id)
   }
-  async findBy(
+  async findAll(
     filter: Partial<IService>,
     options: PaginationOptionDto
   ): Promise<PaginationResultDto<IService>> {
     const { limit, page } = options
-    const pageNumber = Number(page)
-    const skip = (pageNumber - 1) * limit
+    const pageNumber = Math.max(1, Number(page) || 1)
+    const pageSize = Math.max(1, Number(limit) || 10)
+    const skip = (pageNumber - 1) * pageSize
 
     const [items, total] = await Promise.all([
-      this.model.find(filter).skip(skip).limit(limit).exec(),
+      this.model.find(filter).skip(skip).limit(pageSize).exec(),
       this.model.countDocuments(filter).exec(),
     ])
-    const filteredFields = Object.keys(filter)
 
-    const result: PaginationResultDto<IService> = {
+    const filteredFields = Object.keys(filter)
+    const availableFilters = ServiceFindByCriteriaDto.getFields()
+
+    return {
       page: pageNumber,
-      pages: Math.ceil(total / limit),
+      pages: Math.ceil(total / pageSize),
       total,
+      availableFilters,
       filteredFields,
       items,
     }
-    return result
-  }
-
-  async findAll(
-    options: PaginationOptionDto
-  ): Promise<PaginationResultDto<IService>> {
-    const { limit, page } = options
-    const skip = (page - 1) * limit
-
-    const items = await this.model.find().skip(skip).limit(limit).exec()
-
-    const total = await this.model.countDocuments().exec()
-    const result: PaginationResultDto<IService> = {
-      page,
-      pages: Math.ceil(total / limit),
-      total,
-      items,
-    }
-    return result
   }
 
   async save(entity: IService): Promise<IService> {

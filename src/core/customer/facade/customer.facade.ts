@@ -7,8 +7,8 @@ import { ICustomer } from '@/core/customer/entity'
 import { CustomerRepository } from '@/infra/database/mongodb/repository'
 
 export class CustomerFacade {
-  private saveCustomerUseCase: SaveCustomerUseCase
-  private findCustomerByIdUseCase: FindCustomerByIdUseCase
+  saveCustomerUseCase: SaveCustomerUseCase
+  findCustomerByIdUseCase: FindCustomerByIdUseCase
 
   public constructor() {
     const customerRepository = new CustomerRepository()

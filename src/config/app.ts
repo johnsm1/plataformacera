@@ -1,4 +1,4 @@
-import * as express from 'express'
+import express from 'express'
 import type { Application } from 'express'
 import { setupRoutes } from '@/config/routes'
 import { globalErrorHandlerMiddlerware } from '@/middlewares/global-error-handler.middleware'

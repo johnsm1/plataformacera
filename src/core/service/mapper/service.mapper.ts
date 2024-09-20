@@ -1,8 +1,10 @@
 import { IVehicle } from '@/core/vehicle/entity'
-import { SaveServiceWithExistingEntitiesInputDto } from '@/core/service/dto'
+import {
+  SaveServiceWithExistingEntitiesInputDto,
+  ServiceDto,
+} from '@/core/service/dto'
 import { IService } from '@/core/service/entity'
 import { ICustomer } from '@/core/customer/entity'
-import { ServiceStatus } from '@/core/service/enum'
 
 export class ServiceMapper {
   public static mapToEntity(
@@ -15,7 +17,7 @@ export class ServiceMapper {
       completionDate: new Date(),
       vehicle: vehicle,
       customer: customer,
-      status: ServiceStatus.PENDING,
+      status: dto.status,
       value: dto.value,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -23,5 +25,21 @@ export class ServiceMapper {
     }
 
     return entity
+  }
+
+  public static mapEntityToDto(
+    entity: IService,
+    vehicle: IVehicle,
+    customer: ICustomer
+  ): ServiceDto {
+    const serviceDto: ServiceDto = {
+      description: entity.description,
+      completionDate: entity.completionDate,
+      vehicle: vehicle,
+      customer: customer,
+      status: entity.status,
+      value: entity.value,
+    }
+    return serviceDto
   }
 }

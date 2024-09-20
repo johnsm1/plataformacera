@@ -13,7 +13,6 @@ const roles = [
 
 const clientData = {
   name: 'John Doe',
-  contactInfo: 'john.doe@example.com',
 }
 
 const vehicle = {
@@ -37,17 +36,17 @@ async function seedDatabase() {
     const db = client.db(dbName)
 
     // Insere dados na coleção 'role'
-    const roleCollection = db.collection('role')
+    const roleCollection = db.collection('roles')
     await roleCollection.insertMany(roles)
     console.log('Dados inseridos na coleção "role" com sucesso')
 
     // Insere dados na coleção 'client'
-    const clientCollection = db.collection('client')
+    const clientCollection = db.collection('customers')
     await clientCollection.insertOne(clientData)
     console.log('Dados inseridos na coleção "client" com sucesso')
 
     // Insere dados na coleção 'vehicle'
-    const vehicleCollection = db.collection('vehicle')
+    const vehicleCollection = db.collection('vehicles')
     await vehicleCollection.insertOne(vehicle)
     console.log('Dados inseridos na coleção "vehicle" com sucesso')
   } catch (err) {

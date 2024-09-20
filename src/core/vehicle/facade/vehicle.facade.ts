@@ -3,7 +3,7 @@ import { FindVehicleByIdUseCase } from '@/core/vehicle/use-case'
 import { IVehicle } from '@/core/vehicle/entity'
 
 export class VehicleFacade {
-  private findVehicleByIdUseCase: FindVehicleByIdUseCase
+  findVehicleByIdUseCase: FindVehicleByIdUseCase
 
   public constructor() {
     const vehicleRepository = new VehicleRepository()

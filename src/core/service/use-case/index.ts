@@ -1,1 +1,5 @@
 export * from './save-service-with-existing-entities.use-case'
+export * from './find-service-with-existing-entities.use-case'
+export * from './delete-service.use-case'
+export * from './find-all-service-with-filters.use-case'
+export * from './update-service.use-case'
