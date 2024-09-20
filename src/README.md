@@ -31,6 +31,8 @@ Antes de executar o projeto, você precisa ter instalado:
 
    yarn install pra instalar as dependencias
 
+   docker compose up : para subir o banco mongo
+
    yarn run dev para rodar o projeto
 
    rodar os testes: yarn test
