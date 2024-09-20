@@ -28,7 +28,6 @@ export class SignUpUseCase
     const saltOrRounds = 1
     const hash = await bcrypt.hash(password, saltOrRounds)
     const roles: IRole[] = await this.roleRepository.findAllByName([role])
-
     const userExist = await this.userRepository.findOneByEmail(email)
     if (userExist) {
       throw new HttpException('user already exists', 400)

@@ -16,9 +16,9 @@ class JwtService {
     this.REFRESH_TOKEN_EXPIRY = config.REFRESH_TOKEN_EXPIRY
   }
 
-  public generateAccessToken(user: IUser): string {
-    const { email, roles } = user
-    return sign({ email, roles }, this.JWT_SECRET, {
+  public generateAccessToken(user: IUser, role: string): string {
+    const { email } = user
+    return sign({ email, role }, this.JWT_SECRET, {
       expiresIn: this.ACCESS_TOKEN_EXPIRY,
     })
   }
@@ -34,7 +34,7 @@ class JwtService {
       return verify(token, this.JWT_SECRET) as JwtPayload
     } catch (error) {
       logger.error('Invalid access token:', error)
-      throw new Error('Invalid access token')
+      throw new Error(error)
     }
   }
 

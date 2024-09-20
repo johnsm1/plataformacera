@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty } from 'class-validator'
+import { roles } from '../enum/role.enum'
 
 export class SignUpRequestDto {
   @IsNotEmpty()
@@ -12,9 +13,9 @@ export class SignUpRequestDto {
   password: string
 
   @IsNotEmpty()
-  role: string
+  role: roles
 
-  constructor(name: string, email: string, password: string, role: string) {
+  constructor(name: string, email: string, password: string, role: roles) {
     this.name = name
     this.email = email
     this.password = password

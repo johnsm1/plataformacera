@@ -1,16 +1,14 @@
-import { IRole } from '../entity/role.entity'
-
 export class SignInResponseDto {
   accessToken: string
   refreshToken: string
-  expiresIn: string
-  roles: IRole[]
+  expiresIn: number
+  roles: string
 
   constructor(
     accessToken: string,
     refreshToken: string,
-    expireIn: string,
-    roles: IRole[]
+    expireIn: number,
+    roles: string
   ) {
     this.accessToken = accessToken
     this.refreshToken = refreshToken

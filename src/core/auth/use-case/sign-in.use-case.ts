@@ -5,14 +5,21 @@ import { IUser } from '@/core/user/entity/user.entity'
 import { HttpException } from '@/common/exception/http-exception.error'
 import { UseCase } from '@/common/usecase/use-case.interface'
 import { SignInResponseDto } from '../dto/sign-in-response.dto'
-import { UserRepository } from '@/infra/database/mongodb/repository'
+import {
+  RoleRepository,
+  UserRepository,
+} from '@/infra/database/mongodb/repository'
 import { makeJwtService } from '../factory/service/jwt-service-factory'
 
 export class SignInUseCase
   implements UseCase<SignInRequestDto, SignInResponseDto>
 {
-  constructor(private userRepository: UserRepository) {
+  constructor(
+    private userRepository: UserRepository,
+    private roleRepository: RoleRepository
+  ) {
     this.userRepository = userRepository
+    this.roleRepository = roleRepository
   }
 
   async execute(input: SignInRequestDto): Promise<SignInResponseDto> {
@@ -31,17 +38,18 @@ export class SignInUseCase
         'Invalid credentials. Please check your username and password.'
       )
     }
+
+    const role = await this.roleRepository.findById(user.roles.toString())
     const JwtService = makeJwtService()
-    const accessToken = JwtService.generateAccessToken(user)
+    const accessToken = JwtService.generateAccessToken(user, role.name)
     const refreshToken = JwtService.generateRefreshToken(user.id)
-    const expireIn = '1m'
+    const expireIn = 120
     const signInResponseDto = new SignInResponseDto(
       accessToken,
       refreshToken,
       expireIn,
-      user.roles
+      role.name
     )
-    console.log(signInResponseDto)
     return signInResponseDto
   }
 }
